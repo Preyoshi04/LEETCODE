@@ -1,0 +1,21 @@
+// If the last digit is not 9 → just increment and return (no carry needed).
+// If last digit is 9 → turn it into 0 and propagate carry left.
+// If all digits were 9 → we need a new array with one extra digit (1000...0).
+
+
+class Solution {
+    public int[] plusOne(int[] digits) {
+        for (int i = digits.length - 1; i >= 0; i--) {   // loop from last digit → first
+            if (digits[i] < 9) {   // if digit is not 9
+                digits[i] += 1;    // just add 1
+                return digits;     // done, return immediately
+            }
+            digits[i] = 0;   // if digit is 9, make it 0 and continue carry to left
+        }
+
+        // If loop finishes, all digits were 9 → need extra space
+        digits = new int[digits.length + 1];
+        digits[0] = 1;
+        return digits;
+    }
+}
