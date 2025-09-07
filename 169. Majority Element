@@ -1,0 +1,29 @@
+class Solution {
+    public int majorityElement(int[] nums) {
+        int element = -1;
+        int count = 0;
+
+        // Boyer-Moore Voting Algorithm
+        for (int el : nums) {
+            if (el == element) {
+                count++;
+            } else if (count == 0) {
+                element = el;
+                count++;
+            } else {
+                count--;
+            }
+        }
+
+        // Verification step 
+        count = 0;
+        for (int el : nums) {
+            if (el == element) count++;
+        }
+
+        if (count > nums.length / 2) {
+            return element;
+        }
+        return -1; // if no majority (in case problem doesn't guarantee)
+    }
+}
