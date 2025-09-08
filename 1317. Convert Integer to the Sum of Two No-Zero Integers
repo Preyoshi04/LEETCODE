@@ -1,0 +1,27 @@
+class Solution {
+    public int[] getNoZeroIntegers(int n) {
+        
+        //two nos will be a and b.. we can write b as (n-1)
+        for(int a=1;a<n;a++)
+        {
+            int b=n-a;
+            if(noZero(a) && noZero(b))
+            {
+                return new int[]{a,b};
+            }
+        }
+        return new int[]{-1,-1};
+    }
+    public static boolean noZero(int num)
+    {
+        while(num>0)
+        {
+            if(num%10==0)
+            {
+                return false;
+            }
+            num=num/10;
+        }
+        return true;
+    }
+}
