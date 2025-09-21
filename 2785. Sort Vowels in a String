@@ -1,0 +1,38 @@
+class Solution {
+    public String sortVowels(String s) {
+        List<Character> vowels = new ArrayList<>();   //for storing he vowels from the string
+
+        for(char c : s.toCharArray())
+        {
+            if(isVowel(c))
+            {
+                vowels.add(c);
+            }
+        }
+        Collections.sort(vowels);      //sorted all the vowels acc to ASCII Values
+
+        StringBuilder result = new StringBuilder();    //to create new string
+        int index=0;    //default index to keep track of the vowels
+        for(char c : s.toCharArray())
+        {
+            if(isVowel(c))
+            {
+                result.append(vowels.get(index++));  //if c is a vowel, then replaced it with the first index of sorted vowels list, then index++
+            }
+            else
+            {
+                result.append(c);   //else,normal consonant is appended to the string
+            }
+        }
+        return result.toString();
+    }
+
+    public static boolean isVowel(char c) {
+        char[] vowels = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
+        for (char v : vowels) {
+            if (c == v)
+                return true; // if c matches any vowel, return true
+        }
+        return false; // not found, so not a vowel
+    }
+}
