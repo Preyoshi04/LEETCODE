@@ -1,0 +1,19 @@
+class Solution {
+    public String compressedString(String word) {
+        int i = 0;
+        StringBuilder result = new StringBuilder();
+
+        while(i < word.length())
+        {
+            char curr_char = word.charAt(i);
+            int count = 0;
+            while(i<word.length() && word.charAt(i) == curr_char && count < 9)
+            {
+               count++;
+               i++;
+            }
+            result.append(String.valueOf(count)+curr_char);
+        }
+        return result.toString();
+    }
+}
