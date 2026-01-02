@@ -1,0 +1,30 @@
+// class Solution {
+//     public int repeatedNTimes(int[] nums) {
+//         Map<Integer,Integer> mpp = new HashMap<>();
+//         for(int n : nums)
+//         {
+//             mpp.put(n,mpp.getOrDefault(n,0)+1);
+//         }
+//         for(int n : mpp.keySet())
+//         {
+//             if(mpp.get(n) == nums.length/2)
+//             {
+//                 return n;
+//             }
+//         }        
+//         return -1;
+//     }
+// }
+class Solution {
+    public int repeatedNTimes(int[] nums) {
+       HashSet<Integer> set = new HashSet<>();
+       for(int n : nums)
+       {
+        if(!set.add(n))
+        {
+            return n;
+        }
+       }
+        return -1;
+    }
+}
