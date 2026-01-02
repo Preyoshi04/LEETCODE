@@ -1,0 +1,73 @@
+class Solution {
+    public int numMagicSquaresInside(int[][] grid) {
+
+        int row = grid.length;
+        int col = grid[0].length;
+        int count = 0;
+
+        if (row < 3 || col < 3) {
+            return 0;
+        }
+
+        for (int i = 0; i <= row - 3; i++) {
+            for (int j = 0; j <= col - 3; j++) {
+                if (isMagic(grid,i,j))
+                {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    public static boolean isMagic(int[][] arr,int r,int c)
+    {
+        if(arr[r+1][c+1] != 5)
+        {
+            return false;   //center must be always 5
+        }
+        boolean[] seen = new boolean[10];
+
+        for(int i=r;i<r+3;i++)  //checking if every value is distinct
+        {
+            for(int j=c;j<c+3;j++)
+            {
+                int value = arr[i][j];
+                if(value < 1 || value > 9 || seen[value])
+                {
+                    return false;
+                }
+                seen[value] = true;
+            }
+        }
+        //checking row sum
+        for(int i=0;i<3;i++)
+        {
+            if((arr[r + i][c] + arr[r + i][c + 1] + arr[r + i][c + 2]) != 15)
+            {
+                return false;
+            }
+        }
+        //checking column sum
+        for(int j=0;j<3;j++)
+        {
+            if((arr[r][c + j] + arr[r + 1][c + j] + arr[r + 2][c + j]) != 15)
+            {
+                return false;
+            }
+        }
+        //checking for diagonals
+        //left diag
+        if((arr[r][c] + arr[r+1][c+1] + arr[r+2][c+2]) != 15)
+        {
+            return false;
+        }
+        //right diag
+        if((arr[r][c+2] + arr[r+1][c+1] + arr[r+2][c]) != 15)
+        {
+            return false;
+        }
+
+        return true;
+    }
+}
